@@ -56,6 +56,6 @@ int main()
     auto demo = std::make_shared<starter_example::App>();
 
     demo->start();
-
+    
     return 0;
 }
