@@ -4,25 +4,6 @@ project(remote_basic_app)
 set(CMAKE_CXX_STANDARD 17)
 
 option(NATIVE_BUILD "Build on Host Platform" ON)
-# Select the test project to build
-set(selected_test_project destructing_subscribing_event_queues)
-
-set(PLATFORM_ENABLE_ASAN 0)
-set(PLATFORM_ASAN_OPTIMIZATION_LEVEL 0)
-
-list(APPEND available_tests
-        starter_example
-        publish
-        task_event_queue
-        timer
-        linux_asan_test
-        destructing_subscribing_event_queues
-        )
-
-list(FIND available_tests ${selected_test_project} test_found)
-if(${test_found} EQUAL -1)
-    message(FATAL_ERROR "'${selected_test_project}' not found or not a valid test project for the current platform.")
-endif()
 
 message(STATUS "Compiling for Host Platform")
 
@@ -44,9 +25,9 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/externals/jsoncpp ${CMAKE_BINARY_DIR}
 endif()
 
 add_subdirectory(externals/spdlog)
+add_subdirectory(externals/libwebsockets)
 add_subdirectory(App)
 add_subdirectory(App2)
+add_subdirectory(App3)
 add_subdirectory(lib)
-# add_subdirectory(utils_apps)
-# add_subdirectory(integration_test)
 
